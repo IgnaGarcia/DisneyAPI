@@ -18,11 +18,11 @@ public class MovieService {
     }
 
     public List<Movie> getMovies(String order) {
-        return (order == "ASC")
+        return null;/*(order == "ASC")
                 ? movieRepository.findAllOrderByDateAsc()
                 : (order == "DESC")
                 ? movieRepository.findAllOrderByDateDesc()
-                : movieRepository.findAll();
+                : movieRepository.findAll();*/
     }
 
     public Movie getMovie(Long id) {
@@ -33,11 +33,11 @@ public class MovieService {
     }
 
     public List<Movie> getMovieByTitle(String title, String order) {
-        return (order == "ASC")
+        return null;/*(order == "ASC")
                 ? movieRepository.findByTitleLikeOrderByDateAsc(title)
                 : (order == "DESC")
                 ? movieRepository.findByTitleLikeOrderByDateDesc(title)
-                : movieRepository.findByTitleLike(title);
+                : movieRepository.findByTitleLike(title);*/
     }
 
     public List<Movie> getMovieByGenre(Long genre, String order) {

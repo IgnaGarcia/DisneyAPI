@@ -29,17 +29,17 @@ public class MovieController {
     }
 
     @GetMapping(path = "/{id}")
-    public Movie getCharacter(@PathVariable("id") Long id) {
+    public Movie getMovie(@PathVariable("id") Long id) {
         return movieService.getMovie(id);
     }
 
     @PostMapping
-    public Movie createCharacter(@RequestBody Movie movie) {
+    public Movie createMovie(@RequestBody Movie movie) {
         return movieService.createMovie(movie);
     }
 
     @PutMapping
-    public Movie updateCharacter(@RequestBody Movie movie) {
+    public Movie updateMovie(@RequestBody Movie movie) {
         return movieService.updateMovie(movie);
     }
 

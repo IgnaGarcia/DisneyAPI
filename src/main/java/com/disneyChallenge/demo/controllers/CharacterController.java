@@ -3,6 +3,8 @@ package com.disneyChallenge.demo.controllers;
 import com.disneyChallenge.demo.models.Character;
 import com.disneyChallenge.demo.services.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,37 +20,37 @@ public class CharacterController {
     }
 
     @GetMapping
-    public List<Character> getCharacters(@RequestParam(required = false) String name,
-                                         @RequestParam(required = false) Integer age,
-                                         @RequestParam(required = false) Long movie) {
+    public ResponseEntity<List<Character>> getCharacters(@RequestParam(required = false) String name,
+                                                         @RequestParam(required = false) Integer age,
+                                                         @RequestParam(required = false) Long movies) {
         return name != null
-                ? characterService.getCharacterByName(name)
+                ? new ResponseEntity<>(characterService.getCharacterByName(name), HttpStatus.OK)
                 : age != null
-                ? characterService.getCharacterByAge(age)
-                : movie != null
-                ? characterService.getCharacterByMovie(movie)
-                : characterService.getCharacters();
+                ? new ResponseEntity<>(characterService.getCharacterByAge(age), HttpStatus.OK)
+                : movies != null
+                ? new ResponseEntity<>(characterService.getCharacterByMovie(movies), HttpStatus.OK)
+                : new ResponseEntity<>(characterService.getCharacters(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
-    public Character getCharacter(@PathVariable("id") Long id) {
-        return characterService.getCharacter(id);
+    public ResponseEntity<Character> getCharacter(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(characterService.getCharacter(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public Character createCharacter(@RequestBody Character character) {
-        return characterService.createCharacter(character);
+    public ResponseEntity<Character> createCharacter(@RequestBody Character character) {
+        return new ResponseEntity<>(characterService.createCharacter(character), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public Character updateCharacter(@RequestBody Character character) {
-        return characterService.updateCharacter(character);
+    public ResponseEntity<Character> updateCharacter(@RequestBody Character character) {
+        return new ResponseEntity<>(characterService.updateCharacter(character), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
-    public String deleteCharacter(@PathVariable("id") Long id) {
+    public ResponseEntity<String> deleteCharacter(@PathVariable("id") Long id) {
         return characterService.deleteCharacter(id)
-                ? "Character " + id + " deleted succesfully"
-                : "ERROR to delete Character " + id;
+                ? new ResponseEntity<>("Character " + id + " deleted succesfully", HttpStatus.OK)
+                : new ResponseEntity<>("ERROR to delete Character " + id, HttpStatus.OK);
     }
 }

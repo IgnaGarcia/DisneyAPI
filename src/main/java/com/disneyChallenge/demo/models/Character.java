@@ -11,7 +11,7 @@ public class Character {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long c_id;
     private String image;
     private String name;
     private Integer age;
@@ -30,7 +30,7 @@ public class Character {
     }
 
     public Character(Long id) {
-        this.id = id;
+        this.c_id = id;
     }
 
     public Character(Long id,
@@ -39,7 +39,7 @@ public class Character {
                      Integer age,
                      Double weigth,
                      String history) {
-        this.id = id;
+        this.c_id = id;
         this.image = image;
         this.name = name;
         this.age = age;
@@ -59,8 +59,8 @@ public class Character {
         this.history = history;
     }
 
-    public Long getId() {
-        return id;
+    public Long getC_id() {
+        return c_id;
     }
 
     public String getImage() {

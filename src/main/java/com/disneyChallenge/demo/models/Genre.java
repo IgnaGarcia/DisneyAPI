@@ -9,7 +9,7 @@ public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long g_id;
     private String name;
     private String image;
     @OneToMany(mappedBy = "g_id", cascade = {
@@ -25,7 +25,7 @@ public class Genre {
     public Genre(Long id,
                  String name,
                  String image) {
-        this.id = id;
+        this.g_id = id;
         this.name = name;
         this.image = image;
     }
@@ -36,8 +36,8 @@ public class Genre {
         this.image = image;
     }
 
-    public Long getId() {
-        return id;
+    public Long getG_id() {
+        return g_id;
     }
 
     public String getName() {
