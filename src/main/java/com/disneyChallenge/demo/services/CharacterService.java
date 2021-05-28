@@ -50,7 +50,7 @@ public class CharacterService {
     public Character createCharacter(Character character) {
         if (character == null ||
                 character.getName() == null ||
-                character.getC_id() != null) throw new IllegalArgumentException();
+                getCharacter(character.getC_id()) != null) throw new IllegalArgumentException();
         else return characterRepository.save(character);
     }
 

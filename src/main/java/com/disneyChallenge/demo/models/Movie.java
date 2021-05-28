@@ -61,7 +61,7 @@ public class Movie {
         this.g_id = g_id;
     }
 
-    public Long getId() {
+    public Long getM_id() {
         return m_id;
     }
 

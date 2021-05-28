@@ -49,8 +49,8 @@ public class CharacterController {
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteCharacter(@PathVariable("id") Long id) {
-        return characterService.deleteCharacter(id)
-                ? new ResponseEntity<>("Character " + id + " deleted succesfully", HttpStatus.OK)
-                : new ResponseEntity<>("ERROR to delete Character " + id, HttpStatus.OK);
+        return new ResponseEntity<>(characterService.deleteCharacter(id)
+                ? "Character " + id + " deleted succesfully"
+                : "ERROR to delete Character " + id, HttpStatus.OK);
     }
 }
