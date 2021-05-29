@@ -3,6 +3,7 @@ package com.disneyChallenge.demo.services;
 import com.disneyChallenge.demo.models.Movie;
 import com.disneyChallenge.demo.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,11 +22,11 @@ public class MovieService {
     }
 
     public List<Movie> getMovies(String order) {
-        return null;/*(order == "ASC")
-                ? movieRepository.findAllOrderByDateAsc()
-                : (order == "DESC")
-                ? movieRepository.findAllOrderByDateDesc()
-                : movieRepository.findAll();*/
+        return (order != null && order.equals("ASC"))
+                ? movieRepository.findAll(Sort.by(Sort.Direction.ASC, "date"))
+                : (order != null && order.equals("DESC"))
+                ? movieRepository.findAll(Sort.by(Sort.Direction.DESC, "date"))
+                : movieRepository.findAll();
     }
 
     public Movie getMovie(Long id) {
@@ -36,32 +37,28 @@ public class MovieService {
     }
 
     public List<Movie> getMovieByTitle(String title, String order) {
-        return null;/*
         if (title == null) throw new IllegalArgumentException();
-        return (order == "ASC")
-                ? movieRepository.findByTitleLikeOrderByDateAsc(title)
-                : (order == "DESC")
-                ? movieRepository.findByTitleLikeOrderByDateDesc(title)
-                : movieRepository.findByTitleLike(title);*/
+        return (order != null && order.equals("ASC"))
+                ? movieRepository.findByTitle(title, Sort.by(Sort.Direction.ASC, "date"))
+                : (order != null && order.equals("DESC"))
+                ? movieRepository.findByTitle(title, Sort.by(Sort.Direction.ASC, "date"))
+                : movieRepository.findByTitle(title);
     }
 
     public List<Movie> getMovieByGenre(Long genre, String order) {
-        return null;
-        /*
         if (genre == null) throw new IllegalArgumentException();
         if (genreService.getGenre(genre) == null) throw new NoSuchElementException();
-        return (order == "ASC")
-                ? movieRepository.findByGenreOrderByDateAsc(genre)
-                : (order == "DESC")
-                ? movieRepository.findByGenreOrderByDateDesc(genre)
-                : movieRepository.findByGenre(genre);
-         */
+        return (order != null && order.equals("ASC"))
+                ? movieRepository.findByGid(genre, Sort.by(Sort.Direction.ASC, "date"))
+                : (order != null && order.equals("DESC"))
+                ? movieRepository.findByGid(genre, Sort.by(Sort.Direction.DESC, "date"))
+                : movieRepository.findByGid(genre);
     }
 
     public Movie createMovie(Movie movie) {
         if (movie == null ||
                 movie.getTitle() == null ||
-                getMovie(movie.getM_id()) != null) throw new IllegalArgumentException();
+                movie.getM_id() != null) throw new IllegalArgumentException();
         else return movieRepository.save(movie);
     }
 

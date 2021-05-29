@@ -12,6 +12,7 @@ public interface CharacterRepository extends JpaRepository<Character, Long> {
 
     List<Character> findByNameLike(String name);
     List<Character> findByAge(Integer age);
+
     @Query("SELECT c FROM Character c INNER JOIN c.movieList m WHERE m.m_id = ?1")
     List<Character> findByMovies(Long movie);
 }

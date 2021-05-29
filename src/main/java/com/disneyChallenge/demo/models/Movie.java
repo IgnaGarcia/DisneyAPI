@@ -19,7 +19,8 @@ public class Movie {
     private String title;
     private LocalDate date;
     private Integer rate;
-    private Long g_id;
+    @Column(name = "g_id")
+    private Long gid;
     @ManyToMany(targetEntity = Character.class, cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
@@ -40,25 +41,25 @@ public class Movie {
                  String title,
                  LocalDate date,
                  Integer rate,
-                 Long g_id) {
+                 Long gid) {
         this.m_id = id;
         this.image = image;
         this.title = title;
         this.date = date;
         this.rate = rate;
-        this.g_id = g_id;
+        this.gid = gid;
     }
 
     public Movie(String image,
                  String title,
                  LocalDate date,
                  Integer rate,
-                 Long g_id) {
+                 Long gid) {
         this.image = image;
         this.title = title;
         this.date = date;
         this.rate = rate;
-        this.g_id = g_id;
+        this.gid = gid;
     }
 
     public Long getM_id() {
@@ -103,8 +104,8 @@ public class Movie {
         this.rate = rate;
     }
 
-    public Long getG_id() {
-        return g_id;
+    public Long getGid() {
+        return gid;
     }
 
     public List<Character> getCharacterList() {

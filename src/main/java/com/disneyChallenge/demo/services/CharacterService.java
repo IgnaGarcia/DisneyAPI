@@ -32,7 +32,7 @@ public class CharacterService {
     }
 
     public List<Character> getCharacterByName(String name) {
-        if (name == null) throw new IllegalArgumentException();
+        if (name == null || name == "") throw new IllegalArgumentException();
         return characterRepository.findByNameLike(name);
     }
 
@@ -50,7 +50,7 @@ public class CharacterService {
     public Character createCharacter(Character character) {
         if (character == null ||
                 character.getName() == null ||
-                getCharacter(character.getC_id()) != null) throw new IllegalArgumentException();
+                character.getC_id() != null) throw new IllegalArgumentException();
         else return characterRepository.save(character);
     }
 

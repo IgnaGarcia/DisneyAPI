@@ -1,6 +1,7 @@
 package com.disneyChallenge.demo.repositories;
 
 import com.disneyChallenge.demo.models.Movie;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,16 +10,9 @@ import java.util.List;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
+    List<Movie> findByTitle(String title);
+    List<Movie> findByTitle(String title, Sort sort);
+    List<Movie> findByGid(Long g_id);
+    List<Movie> findByGid(Long g_id, Sort sort);
 
-    /*List<Movie> findAllOrderByDateDesc();
-    List<Movie> findAllOrderByDateAsc();*/
-
-    List<Movie> findByTitleLike(String title);
-    /*List<Movie> findByTitleLikeOrderByDateDesc(String title);
-    List<Movie> findByTitleLikeOrderByDateAsc(String title);*/
-
-    List<Movie> findByGenre(Long genre);
-    /*List<Movie> findByGenreOrderByDateDesc(Long genre);
-    List<Movie> findByGenreOrderByDateAsc(Long genre);
-     */
 }

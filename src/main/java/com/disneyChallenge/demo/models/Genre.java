@@ -12,7 +12,7 @@ public class Genre {
     private Long g_id;
     private String name;
     private String image;
-    @OneToMany(mappedBy = "g_id", cascade = {
+    @OneToMany(mappedBy = "gid", cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.PERSIST,
