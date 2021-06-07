@@ -2,6 +2,7 @@ package com.disneyChallenge.demo.controllers;
 
 import com.disneyChallenge.demo.models.Movie;
 import com.disneyChallenge.demo.services.MovieService;
+import com.disneyChallenge.demo.util.MovieDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +21,9 @@ public class MovieController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Movie>> getMovies(@RequestParam(required = false) String name,
-                                                 @RequestParam(required = false) Long genre,
-                                                 @RequestParam(required = false) String order) {
+    public ResponseEntity<List<MovieDTO>> getMovies(@RequestParam(required = false) String name,
+                                                    @RequestParam(required = false) Long genre,
+                                                    @RequestParam(required = false) String order) {
         return name != null
                 ? new ResponseEntity<>(movieService.getMovieByTitle(name, order), HttpStatus.OK)
                 : genre != null

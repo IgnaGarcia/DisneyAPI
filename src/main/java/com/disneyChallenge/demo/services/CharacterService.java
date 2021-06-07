@@ -2,6 +2,7 @@ package com.disneyChallenge.demo.services;
 
 import com.disneyChallenge.demo.models.Character;
 import com.disneyChallenge.demo.repositories.CharacterRepository;
+import com.disneyChallenge.demo.util.CharacterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,8 @@ public class CharacterService {
         this.movieService = movieService;
     }
 
-    public List<Character> getCharacters() {
-        return characterRepository.findAll();
+    public List<CharacterDTO> getCharacters() {
+        return CharacterDTO.mapToDTO(characterRepository.findAll());
     }
 
     public Character getCharacter(Long id) {
@@ -31,19 +32,19 @@ public class CharacterService {
         else throw new NoSuchElementException();
     }
 
-    public List<Character> getCharacterByName(String name) {
+    public List<CharacterDTO> getCharacterByName(String name) {
         if (name == null || name == "") throw new IllegalArgumentException();
-        return characterRepository.findByNameLike(name);
+        return CharacterDTO.mapToDTO(characterRepository.findByNameLike(name));
     }
 
-    public List<Character> getCharacterByAge(Integer age) {
+    public List<CharacterDTO> getCharacterByAge(Integer age) {
         if (age == null) throw new IllegalArgumentException();
-        return characterRepository.findByAge(age);
+        return CharacterDTO.mapToDTO(characterRepository.findByAge(age));
     }
 
-    public List<Character> getCharacterByMovie(Long movie) {
+    public List<CharacterDTO> getCharacterByMovie(Long movie) {
         if (movie == null) throw new IllegalArgumentException();
-        else if (movieService.getMovie(movie) != null) return characterRepository.findByMovies(movie);
+        else if (movieService.getMovie(movie) != null) return CharacterDTO.mapToDTO(characterRepository.findByMovies(movie));
         else throw new NoSuchElementException();
     }
 

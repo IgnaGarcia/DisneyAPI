@@ -2,6 +2,7 @@ package com.disneyChallenge.demo.services;
 
 import com.disneyChallenge.demo.models.Movie;
 import com.disneyChallenge.demo.repositories.MovieRepository;
+import com.disneyChallenge.demo.util.MovieDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,12 @@ public class MovieService {
         this.genreService = genreService;
     }
 
-    public List<Movie> getMovies(String order) {
+    public List<MovieDTO> getMovies(String order) {
         return (order != null && order.equals("ASC"))
-                ? movieRepository.findAll(Sort.by(Sort.Direction.ASC, "date"))
+                ? MovieDTO.mapToDTO(movieRepository.findAll(Sort.by(Sort.Direction.ASC, "date")))
                 : (order != null && order.equals("DESC"))
-                ? movieRepository.findAll(Sort.by(Sort.Direction.DESC, "date"))
-                : movieRepository.findAll();
+                ? MovieDTO.mapToDTO(movieRepository.findAll(Sort.by(Sort.Direction.DESC, "date")))
+                : MovieDTO.mapToDTO(movieRepository.findAll());
     }
 
     public Movie getMovie(Long id) {
@@ -36,23 +37,23 @@ public class MovieService {
         else throw new NoSuchElementException();
     }
 
-    public List<Movie> getMovieByTitle(String title, String order) {
+    public List<MovieDTO> getMovieByTitle(String title, String order) {
         if (title == null) throw new IllegalArgumentException();
         return (order != null && order.equals("ASC"))
-                ? movieRepository.findByTitle(title, Sort.by(Sort.Direction.ASC, "date"))
+                ? MovieDTO.mapToDTO(movieRepository.findByTitle(title, Sort.by(Sort.Direction.ASC, "date")))
                 : (order != null && order.equals("DESC"))
-                ? movieRepository.findByTitle(title, Sort.by(Sort.Direction.ASC, "date"))
-                : movieRepository.findByTitle(title);
+                ? MovieDTO.mapToDTO(movieRepository.findByTitle(title, Sort.by(Sort.Direction.ASC, "date")))
+                : MovieDTO.mapToDTO(movieRepository.findByTitle(title));
     }
 
-    public List<Movie> getMovieByGenre(Long genre, String order) {
+    public List<MovieDTO> getMovieByGenre(Long genre, String order) {
         if (genre == null) throw new IllegalArgumentException();
         if (genreService.getGenre(genre) == null) throw new NoSuchElementException();
         return (order != null && order.equals("ASC"))
-                ? movieRepository.findByGid(genre, Sort.by(Sort.Direction.ASC, "date"))
+                ? MovieDTO.mapToDTO(movieRepository.findByGid(genre, Sort.by(Sort.Direction.ASC, "date")))
                 : (order != null && order.equals("DESC"))
-                ? movieRepository.findByGid(genre, Sort.by(Sort.Direction.DESC, "date"))
-                : movieRepository.findByGid(genre);
+                ? MovieDTO.mapToDTO(movieRepository.findByGid(genre, Sort.by(Sort.Direction.DESC, "date")))
+                : MovieDTO.mapToDTO(movieRepository.findByGid(genre));
     }
 
     public Movie createMovie(Movie movie) {

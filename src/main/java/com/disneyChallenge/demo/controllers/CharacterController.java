@@ -2,6 +2,7 @@ package com.disneyChallenge.demo.controllers;
 
 import com.disneyChallenge.demo.models.Character;
 import com.disneyChallenge.demo.services.CharacterService;
+import com.disneyChallenge.demo.util.CharacterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +21,9 @@ public class CharacterController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Character>> getCharacters(@RequestParam(required = false) String name,
-                                                         @RequestParam(required = false) Integer age,
-                                                         @RequestParam(required = false) Long movies) {
+    public ResponseEntity<List<CharacterDTO>> getCharacters(@RequestParam(required = false) String name,
+                                                            @RequestParam(required = false) Integer age,
+                                                            @RequestParam(required = false) Long movies) {
         return name != null
                 ? new ResponseEntity<>(characterService.getCharacterByName(name), HttpStatus.OK)
                 : age != null
