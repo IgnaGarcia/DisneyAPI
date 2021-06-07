@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "f6bc6c13-16c6-4b42-9159-d20c9f64ecd8",
+		"name": "Characters",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Characters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/characters",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Characters By Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/characters?name=nemo",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"characters"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "nemo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Characters By Age",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/characters?age=2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"characters"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Characters By Movie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/characters?movies=10",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"characters"
+					],
+					"query": [
+						{
+							"key": "movies",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Character by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/characters/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"characters",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Character",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": \"https://avatars.githubusercontent.com/u/49423520?s=400&u=4eba08b324283fb39b7fe45c29f0374bd850f95f&v=4\",\r\n    \"name\": \"nueov\",\r\n    \"age\": 8,\r\n    \"weigth\": 18.5,\r\n    \"history\": \"todavia no esta desarrollado\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/characters",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Character by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/characters/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"characters",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Character by ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"c_id\": 10,\r\n    \"image\": \"https://avatars.githubusercontent.com/u/49423520?s=400&u=4eba08b324283fb39b7fe45c29f0374bd850f95f&v=4\",\r\n    \"name\": \"Micky Mouse\",\r\n    \"age\": 47,\r\n    \"weigth\": 5.3,\r\n    \"history\": \"El ratoncito mas famoso de disney, tiene pantalon rojo con tirantes\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/characters",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

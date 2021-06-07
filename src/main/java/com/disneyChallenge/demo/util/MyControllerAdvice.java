@@ -15,17 +15,17 @@ import java.util.NoSuchElementException;
 public class MyControllerAdvice extends ResponseEntityExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler(NoSuchElementException.class)
-    public final ResponseEntity<RuntimeException> handle(NoSuchElementException ex, WebRequest request) {
-       return new ResponseEntity<>(ex, HttpStatus.NOT_FOUND);
+    public final ResponseEntity<String> handle(NoSuchElementException ex, WebRequest request) {
+       return new ResponseEntity<>("Element not exists, please change the request", HttpStatus.NOT_FOUND);
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(IllegalArgumentException.class)
-    public final ResponseEntity<RuntimeException> handle(IllegalArgumentException ex, WebRequest request) {
-       return new ResponseEntity<>(ex, HttpStatus.BAD_REQUEST);
+    public final ResponseEntity<String> handle(IllegalArgumentException ex, WebRequest request) {
+       return new ResponseEntity<>("Input fiel is invalid, please check it", HttpStatus.BAD_REQUEST);
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(RuntimeException.class)
-    public final ResponseEntity<RuntimeException> handle(RuntimeException ex, WebRequest request) {
-        return new ResponseEntity<>(ex, HttpStatus.INTERNAL_SERVER_ERROR);
+    public final ResponseEntity<String> handle(RuntimeException ex, WebRequest request) {
+        return new ResponseEntity<>("Server error, please try later", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
